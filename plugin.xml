@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-log2c-web-launcher" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>cordova-plugin-log2c-web-launcher</name>
+    <description>Web 启动器</description>
+    <license>Apache 2.0</license>
+    <keywords>Cordova,URL,launcher</keywords>
+    <js-module src="www/index.js" name="WebLauncher">
+        <clobbers target="WebLauncher" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="WebLauncher">
+                <param name="android-package" value="com.log2c.cordova.plugin.weblauncher.WebLauncherPlugin" />
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.log2c.cordova.plugin.weblauncher.WebLauncherActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize" />
+        </config-file>
+        <source-file src="src/android/WebLauncherPlugin.java" target-dir="src/com/log2c/cordova/plugin/weblauncher" />
+        <source-file src="src/android/WebLauncherUtil.java" target-dir="src/com/log2c/cordova/plugin/weblauncher" />
+        <source-file src="src/android/WebLauncherActivity.java" target-dir="src/com/log2c/cordova/plugin/weblauncher" />
+        <framework src="build-extras.gradle" custom="true" type="gradleReference" />
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="WebLauncher">
+                <param name="ios-package" value="WebLauncherPlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/WebLauncherPlugin.h" />
+        <source-file src="src/ios/WebLauncherPlugin.m" />
+        <header-file src="src/ios/WebLauncher.h" />
+        <source-file src="src/ios/WebLauncher.m" />
+    </platform>
+</plugin>

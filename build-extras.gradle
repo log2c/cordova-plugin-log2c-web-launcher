@@ -1,0 +1,20 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+}
+
+repositories{
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+    }
+}
+
+dependencies {
+
+}

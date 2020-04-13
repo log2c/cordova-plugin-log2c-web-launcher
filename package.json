@@ -1,0 +1,40 @@
+{
+  "_resolved": "git+https://github.com/log2c/cordova-plugin-log2c-web-launcher.git",
+  "author": {
+    "name": "log2c"
+  },
+  "bugs": {
+    "url": "https://github.com/log2c/cordova-plugin-log2c-web-launcher/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-log2c-web-launcher",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Push Plugin,use Aliyun SDK",
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=5.0.0"
+    }
+  ],
+  "homepage": "https://github.com/log2c/cordova-plugin-log2c-web-launcher.git#readme",
+  "keywords": [
+    "cordova",
+    "aliyun",
+    "push",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "Apache 2.0",
+  "name": "cordova-plugin-log2c-web-launcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/log2c/cordova-plugin-log2c-web-launcher.git"
+  },
+  "version": "0.0.1"
+}
