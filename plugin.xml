@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-log2c-web-launcher" version="0.1.0"
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-log2c-web-launcher" version="0.1.1"
     xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>cordova-plugin-log2c-web-launcher</name>
     <description>Web 启动器</description>
@@ -32,5 +32,9 @@
         <source-file src="src/ios/WebLauncherPlugin.m" />
         <header-file src="src/ios/WebLauncher.h" />
         <source-file src="src/ios/WebLauncher.m" />
+        <header-file src="src/ios/CustomConfigParser.h" />
+        <source-file src="src/ios/CustomConfigParser.m" />
+        <header-file src="src/ios/WebLauncherViewController.h" />
+        <source-file src="src/ios/WebLauncherViewController.m" />
     </platform>
 </plugin>
