@@ -7,7 +7,6 @@ import org.apache.cordova.CordovaPlugin;
 
 public class WebLauncherUtil {
     private static WebLauncherUtil mLauncherUtil = null;
-    private String needOpenUrl = "";
 
     private WebLauncherUtil() {
     }
@@ -19,10 +18,10 @@ public class WebLauncherUtil {
         return mLauncherUtil;
     }
 
-    public void launch(CordovaPlugin cordovaPlugin, final String url) {
-        needOpenUrl = url;
+    public void launch(CordovaPlugin cordovaPlugin, final String url, String[] excludePlugin) {
         Activity activity = cordovaPlugin.cordova.getActivity();
         Intent intent = new Intent(activity, WebLauncherActivity.class);
+        intent.putExtra(WebLauncherActivity.INTENT_EXCLUDE_PLUGINS, excludePlugin);
         intent.putExtra(WebLauncherActivity.INTENT_FLAG, url);
         activity.startActivity(intent);
     }

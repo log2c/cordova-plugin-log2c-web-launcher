@@ -1,5 +1,6 @@
 #import "WebLauncher.h"
 #import "MainViewController.h"
+#import "WebLauncherViewController.h"
 
 @interface WebLauncher(){
     NSURL *needOpenUrl;
@@ -20,14 +21,14 @@
 
 -(void)launch:(CDVPlugin *)plugin withTargetUrl:(NSURL *)url{
     needOpenUrl = url;
-    MainViewController *vc = [[MainViewController alloc] init];
+    WebLauncherViewController *vc = [[WebLauncherViewController alloc] init];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
-
+    
     NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
     [vc addObserver:self forKeyPath:@"startPage" options:options context:@"launch"];
-
+    
     [plugin.viewController presentViewController:vc animated:YES completion:^{
-
+        
     }];
 }
 

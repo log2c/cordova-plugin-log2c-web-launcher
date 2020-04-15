@@ -15,6 +15,9 @@ var WebLauncher = {
     launch: function (url, successCallback, errorCallback) {
         this.callNative('launch', [url], successCallback, errorCallback)
     },
+    close: function (successCallback, errorCallback) {
+        this.callNative('close', [], successCallback, errorCallback)
+    },
     WebLauncher: WebLauncher
 }
 module.exports = WebLauncher;
