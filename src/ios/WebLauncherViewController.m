@@ -11,44 +11,51 @@
 #import "CustomConfigParser.h"
 
 @interface WebLauncherViewController (){
-    
+
     BOOL isInit;
-    
+
 }
 @end
 
 @implementation WebLauncherViewController
 
--(void)viewDidLoad{
+- (instancetype)init{
+    id instance = [super init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWebViewPageDidLoad1:)
+                                                 name:CDVPageDidLoadNotification object:nil];
+    return instance;
+}
+- (void)onWebViewPageDidLoad1:(NSNotification*)notification
+{
+    self.webView.hidden = NO;
+    [self showLaunchScreen:NO];
+}
+- (void)viewDidLoad{
     [super viewDidLoad];
+}
+- (void)createLaunchView
+{
+    CGRect webViewBounds = self.view.bounds;
+    webViewBounds.origin = self.view.bounds.origin;
+
+    UIView* view = [[UIView alloc] initWithFrame:webViewBounds];
+    [view setAlpha:0];
+
+    [self setValue:view forKey:@"launchView"];
+    [self.view addSubview:view];
 }
 
 - (void)parseSettingsWithParser:(NSObject <NSXMLParserDelegate>*)delegate{
-    //    if ([delegate isKindOfClass:[CDVConfigParser class]]) {
-    //        CustomConfigParser* customDelegate = [[CustomConfigParser alloc] init];
-    //        [super parseSettingsWithParser:customDelegate];
-    //        CDVConfigParser *parser = (id < NSXMLParserDelegate >)delegate;
-    //        [parser.pluginsDict removeAllObjects];
-    //        [parser.startupPluginNames removeAllObjects];
-    //        [parser.settings removeAllObjects];
-    //
-    //        [parser.pluginsDict addEntriesFromDictionary:customDelegate.pluginsDict];
-    //        [parser.startupPluginNames addObjectsFromArray:customDelegate.startupPluginNames];
-    //        [parser.settings addEntriesFromDictionary:customDelegate.settings];
-    //    } else {
-    //
-    //    }
-    
     if (!isInit) {
         CustomConfigParser* customDelegate = [[CustomConfigParser alloc] init];
         [super parseSettingsWithParser:customDelegate]; // 获取到 exclude-plugin
         self.excludePlugins = customDelegate.excludePlugins;
         isInit = YES;
     }
-    
-    
+
+
     [super parseSettingsWithParser:delegate];
-    
+
     if (self.excludePlugins != nil && [delegate isKindOfClass:[CDVConfigParser class]]) {
         CDVConfigParser *parser = (id < NSXMLParserDelegate >)delegate;
         for (NSString *plugin in self.excludePlugins) {
