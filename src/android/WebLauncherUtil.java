@@ -19,10 +19,15 @@ public class WebLauncherUtil {
     }
 
     public void launch(CordovaPlugin cordovaPlugin, final String url, String[] excludePlugin) {
+        launch(null, cordovaPlugin, url, excludePlugin);
+    }
+
+    public void launch(String packageName, CordovaPlugin cordovaPlugin, final String url, String[] excludePlugin) {
         Activity activity = cordovaPlugin.cordova.getActivity();
         Intent intent = new Intent(activity, WebLauncherActivity.class);
         intent.putExtra(WebLauncherActivity.INTENT_EXCLUDE_PLUGINS, excludePlugin);
         intent.putExtra(WebLauncherActivity.INTENT_FLAG, url);
+        intent.putExtra(WebLauncherActivity.INTENT_PACKAGE_NAME, packageName);
         activity.startActivity(intent);
     }
 }

@@ -31,7 +31,7 @@ public class WebLauncherPlugin extends CordovaPlugin {
             }
             String[] excludes = new String[excludePluginList.size()];
             excludePluginList.toArray(excludes);
-            WebLauncherUtil.getInstance().launch(this, url, excludes);
+            WebLauncherUtil.getInstance().launch(cordova.getActivity().getPackageName(), this, url, excludes);
             callbackContext.success();
             return true;
         } else if ("close".equals(action)) {
