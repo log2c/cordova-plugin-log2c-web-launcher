@@ -16,5 +16,5 @@ repositories{
 }
 
 dependencies {
-
+    implementation 'org.apache.maven:maven-artifact:3.5.4'
 }
