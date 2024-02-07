@@ -59,6 +59,17 @@ public class WebLauncherActivity extends CordovaActivity {
     }
 
     private void removePlugin() {
+        DefaultArtifactVersion buildVer = new DefaultArtifactVersion(CordovaWebView.CORDOVA_VERSION);
+        DefaultArtifactVersion compatVer = new DefaultArtifactVersion(CORDOVA_SPLASH_SCREEN_COMPATIBLE);
+        if (buildVer.compareTo(compatVer) >= 0) {
+            // 大于等于 10.1.2, 需要移除该插件
+            for (PluginEntry pluginEntry : pluginEntries) {
+                if (pluginEntry.pluginClass.equals("org.apache.cordova.SplashScreenPlugin")) {
+                    pluginEntries.remove(pluginEntry);
+                    break;
+                }
+            }
+        }
         if (excludePluginArgs == null || excludePluginArgs.length == 0) {
             return;
         }
@@ -68,7 +79,6 @@ public class WebLauncherActivity extends CordovaActivity {
             for (String excludeServiceName : excludePluginArgs) {
                 if (entry.service.equals(excludeServiceName)) {
                     iterator.remove();
-                    continue;
                 }
             }
         }
